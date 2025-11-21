@@ -41,4 +41,8 @@ api.interceptors.response.use(
   }
 );
 
+export const forgotPassword = async (email: string) => {
+  return api.post('/auth/forgot-password', { email });
+};
+
 export default api;

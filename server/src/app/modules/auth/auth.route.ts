@@ -21,4 +21,10 @@ router.post('/logout', AuthController.logoutUser);
 
 router.post('/refresh-token', AuthController.refreshToken);
 
+router.post(
+  '/forgot-password',
+  validateRequest(AuthValidation.forgotPasswordZodSchema),
+  AuthController.forgotPassword
+);
+
 export const AuthRoutes = router;

@@ -47,8 +47,22 @@ const refreshToken = async (sessionCookie: string) => {
   }
 };
 
+const forgotPassword = async (email: string) => {
+  try {
+    const link = await admin.auth().generatePasswordResetLink(email);
+    // In a real application, you would send this link via email.
+    // Since we don't have an email service, we return it.
+    return {
+      link,
+    };
+  } catch (error: any) {
+    throw new AppError(400, error.message || 'Error generating reset link');
+  }
+};
+
 export const AuthService = {
   loginUser,
   registerUser,
   refreshToken,
+  forgotPassword,
 };
